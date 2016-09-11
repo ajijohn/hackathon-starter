@@ -1,0 +1,55 @@
+extends ./layout
+
+block extraHeader
+  link(rel='stylesheet', href='https://cdn.rawgit.com/wyuenho/backgrid/master/lib/backgrid.css')
+  link(rel='stylesheet', href='https://cdn.rawgit.com/wyuenho/backgrid-select-all/master/backgrid-select-all.css')
+
+block content
+  style.
+    #map {
+      width: 100%;
+      height: 500px;
+    }
+
+  .page-header
+    h2
+      i.fa.fa-google
+      | StudyBuddy
+
+
+  h3 Study Buddies
+  script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCJUqqC9Lg3-ayYuWa1VgDk5hiHiHIe30A&callback=initMap')
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js')
+  script(src='https://cdn.rawgit.com/jashkenas/backbone/1.1.0/backbone.js')
+  script(src='https://cdn.rawgit.com/wyuenho/backgrid/master/lib/backgrid.js')
+  script(src='https://cdn.rawgit.com/wyuenho/backbone-pageable/master/lib/backbone-pageable.js')
+  script(src='https://cdn.rawgit.com/wyuenho/backgrid-filter/master/backgrid-filter.js')
+  script(src='https://cdn.traitify.com/lib/v1.js')
+  script(src='https://cdn.traitify.com/js/widgets/v1.js')
+
+  hr
+  #traits
+    .slide-deck
+    .personality-traits
+  hr
+
+  script.
+    Traitify.setPublicKey("24usi5dcgb5gfmtmugpgmred7n"); // Example Public Key
+    Traitify.setHost("api-sandbox.traitify.com"); // Example host url (Defaults to api.traitify.com)
+    Traitify.setVersion("v1"); // Example Version
+    //var assessmentId = "d17e350e-061a-444e-a220-c8105e394b6c"; // Fuinished
+    var assessmentId = "a9025d2d-64bb-4b21-b340-1673f6350c38"; //new
+
+    traitify = Traitify.ui.load(assessmentId, ".slide-deck", {
+      personalityTraits: {target: ".personality-traits"}
+    }); // Example selector for widget target
+
+    traitify.slideDeck.onFinished(function(){
+       // alert("Finished");
+    })
+
+  hr
+
+  hr
+

@@ -32,6 +32,7 @@ const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
 const apiController = require('./controllers/api');
 const contactController = require('./controllers/contact');
+const scheduleController = require('./controllers/schedule');
 
 /**
  * API keys and Passport configuration.
@@ -128,6 +129,12 @@ app.post('/account/profile', passportConfig.isAuthenticated, userController.post
 app.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
+
+/**
+ * New routes
+ */
+app.get('/schedules', passportConfig.isAuthenticated, scheduleController.getSchedules);
+app.get('/studybuddy', passportConfig.isAuthenticated, scheduleController.getStudyBuddy);
 
 /**
  * API examples routes.
